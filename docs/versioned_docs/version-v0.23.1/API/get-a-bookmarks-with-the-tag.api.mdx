@@ -13,29 +13,24 @@ hide_send_button: true
 ---
 
 import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
 import ParamsDetails from "@theme/ParamsDetails";
 import RequestSchema from "@theme/RequestSchema";
 import StatusCodes from "@theme/StatusCodes";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
-import Heading from "@theme/Heading";
 
 <Heading
   as={"h1"}
   className={"openapi__heading"}
   children={"Get a bookmarks with the tag"}
->
-</Heading>
+></Heading>
 
 <MethodEndpoint
   method={"get"}
   path={"/tags/{tagId}/bookmarks"}
   context={"endpoint"}
->
-  
-</MethodEndpoint>
-
-
+></MethodEndpoint>
 
 Get the bookmarks with the tag
 
@@ -44,29 +39,201 @@ Get the bookmarks with the tag
   as={"h2"}
   className={"openapi-tabs__heading"}
   children={"Request"}
->
-</Heading>
+></Heading>
 
 <ParamsDetails
-  parameters={[{"schema":{"type":"string","example":"ieidlxygmwj87oxz5hxttoc8","title":"TagId"},"required":true,"name":"tagId","in":"path"},{"schema":{"type":"number"},"required":false,"name":"limit","in":"query"},{"schema":{"type":"string","title":"Cursor"},"required":false,"name":"cursor","in":"query"}]}
->
-  
-</ParamsDetails>
+  parameters={[
+    {
+      schema: {
+        type: "string",
+        example: "ieidlxygmwj87oxz5hxttoc8",
+        title: "TagId",
+      },
+      required: true,
+      name: "tagId",
+      in: "path",
+    },
+    { schema: { type: "number" }, required: false, name: "limit", in: "query" },
+    {
+      schema: { type: "string", title: "Cursor" },
+      required: false,
+      name: "cursor",
+      in: "query",
+    },
+  ]}
+></ParamsDetails>
 
-<RequestSchema
-  title={"Body"}
-  body={undefined}
->
-  
-</RequestSchema>
+<RequestSchema title={"Body"} body={undefined}></RequestSchema>
 
 <StatusCodes
   id={undefined}
   label={undefined}
-  responses={{"200":{"description":"Object with list data.","content":{"application/json":{"schema":{"type":"object","properties":{"bookmarks":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"createdAt":{"type":"string"},"modifiedAt":{"type":"string","nullable":true},"title":{"type":"string","nullable":true},"archived":{"type":"boolean"},"favourited":{"type":"boolean"},"taggingStatus":{"type":"string","nullable":true,"enum":["success","failure","pending"]},"note":{"type":"string","nullable":true},"summary":{"type":"string","nullable":true},"tags":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"attachedBy":{"type":"string","enum":["ai","human"]}},"required":["id","name","attachedBy"]}},"content":{"oneOf":[{"type":"object","properties":{"type":{"type":"string","enum":["link"]},"url":{"type":"string"},"title":{"type":"string","nullable":true},"description":{"type":"string","nullable":true},"imageUrl":{"type":"string","nullable":true},"imageAssetId":{"type":"string","nullable":true},"screenshotAssetId":{"type":"string","nullable":true},"fullPageArchiveAssetId":{"type":"string","nullable":true},"precrawledArchiveAssetId":{"type":"string","nullable":true},"videoAssetId":{"type":"string","nullable":true},"favicon":{"type":"string","nullable":true},"htmlContent":{"type":"string","nullable":true},"crawledAt":{"type":"string","nullable":true},"author":{"type":"string","nullable":true},"publisher":{"type":"string","nullable":true},"datePublished":{"type":"string","nullable":true},"dateModified":{"type":"string","nullable":true}},"required":["type","url"]},{"type":"object","properties":{"type":{"type":"string","enum":["text"]},"text":{"type":"string"},"sourceUrl":{"type":"string","nullable":true}},"required":["type","text"]},{"type":"object","properties":{"type":{"type":"string","enum":["asset"]},"assetType":{"type":"string","enum":["image","pdf"]},"assetId":{"type":"string"},"fileName":{"type":"string","nullable":true},"sourceUrl":{"type":"string","nullable":true},"size":{"type":"number","nullable":true},"content":{"type":"string","nullable":true}},"required":["type","assetType","assetId"]},{"type":"object","properties":{"type":{"type":"string","enum":["unknown"]}},"required":["type"]}]},"assets":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"assetType":{"type":"string","enum":["screenshot","assetScreenshot","bannerImage","fullPageArchive","video","bookmarkAsset","precrawledArchive","unknown"]}},"required":["id","assetType"]}}},"required":["id","createdAt","modifiedAt","archived","favourited","taggingStatus","tags","content","assets"],"title":"Bookmark"}},"nextCursor":{"type":"string","nullable":true}},"required":["bookmarks","nextCursor"],"title":"PaginatedBookmarks"}}}},"404":{"description":"Tag not found","content":{"application/json":{"schema":{"type":"object","properties":{"code":{"type":"string"},"message":{"type":"string"}},"required":["code","message"]}}}}}}
->
-  
-</StatusCodes>
-
-
-      
+  responses={{
+    "200": {
+      description: "Object with list data.",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              bookmarks: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    id: { type: "string" },
+                    createdAt: { type: "string" },
+                    modifiedAt: { type: "string", nullable: true },
+                    title: { type: "string", nullable: true },
+                    archived: { type: "boolean" },
+                    favourited: { type: "boolean" },
+                    taggingStatus: {
+                      type: "string",
+                      nullable: true,
+                      enum: ["success", "failure", "pending"],
+                    },
+                    note: { type: "string", nullable: true },
+                    summary: { type: "string", nullable: true },
+                    tags: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          id: { type: "string" },
+                          name: { type: "string" },
+                          attachedBy: { type: "string", enum: ["ai", "human"] },
+                        },
+                        required: ["id", "name", "attachedBy"],
+                      },
+                    },
+                    content: {
+                      oneOf: [
+                        {
+                          type: "object",
+                          properties: {
+                            type: { type: "string", enum: ["link"] },
+                            url: { type: "string" },
+                            title: { type: "string", nullable: true },
+                            description: { type: "string", nullable: true },
+                            imageUrl: { type: "string", nullable: true },
+                            imageAssetId: { type: "string", nullable: true },
+                            screenshotAssetId: {
+                              type: "string",
+                              nullable: true,
+                            },
+                            fullPageArchiveAssetId: {
+                              type: "string",
+                              nullable: true,
+                            },
+                            precrawledArchiveAssetId: {
+                              type: "string",
+                              nullable: true,
+                            },
+                            videoAssetId: { type: "string", nullable: true },
+                            favicon: { type: "string", nullable: true },
+                            htmlContent: { type: "string", nullable: true },
+                            crawledAt: { type: "string", nullable: true },
+                            author: { type: "string", nullable: true },
+                            publisher: { type: "string", nullable: true },
+                            datePublished: { type: "string", nullable: true },
+                            dateModified: { type: "string", nullable: true },
+                          },
+                          required: ["type", "url"],
+                        },
+                        {
+                          type: "object",
+                          properties: {
+                            type: { type: "string", enum: ["text"] },
+                            text: { type: "string" },
+                            sourceUrl: { type: "string", nullable: true },
+                          },
+                          required: ["type", "text"],
+                        },
+                        {
+                          type: "object",
+                          properties: {
+                            type: { type: "string", enum: ["asset"] },
+                            assetType: {
+                              type: "string",
+                              enum: ["image", "pdf"],
+                            },
+                            assetId: { type: "string" },
+                            fileName: { type: "string", nullable: true },
+                            sourceUrl: { type: "string", nullable: true },
+                            size: { type: "number", nullable: true },
+                            content: { type: "string", nullable: true },
+                          },
+                          required: ["type", "assetType", "assetId"],
+                        },
+                        {
+                          type: "object",
+                          properties: {
+                            type: { type: "string", enum: ["unknown"] },
+                          },
+                          required: ["type"],
+                        },
+                      ],
+                    },
+                    assets: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          id: { type: "string" },
+                          assetType: {
+                            type: "string",
+                            enum: [
+                              "screenshot",
+                              "assetScreenshot",
+                              "bannerImage",
+                              "fullPageArchive",
+                              "video",
+                              "bookmarkAsset",
+                              "precrawledArchive",
+                              "unknown",
+                            ],
+                          },
+                        },
+                        required: ["id", "assetType"],
+                      },
+                    },
+                  },
+                  required: [
+                    "id",
+                    "createdAt",
+                    "modifiedAt",
+                    "archived",
+                    "favourited",
+                    "taggingStatus",
+                    "tags",
+                    "content",
+                    "assets",
+                  ],
+                  title: "Bookmark",
+                },
+              },
+              nextCursor: { type: "string", nullable: true },
+            },
+            required: ["bookmarks", "nextCursor"],
+            title: "PaginatedBookmarks",
+          },
+        },
+      },
+    },
+    "404": {
+      description: "Tag not found",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              code: { type: "string" },
+              message: { type: "string" },
+            },
+            required: ["code", "message"],
+          },
+        },
+      },
+    },
+  }}
+></StatusCodes>

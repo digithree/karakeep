@@ -5,13 +5,13 @@ metadata:
   namespace: karakeep
 spec:
   rules:
-  - host: "karakeep.example.com"
-    http:
-      paths:
-      - path: "/"
-        pathType: Prefix
-        backend:
-          service:
-            name: "web"
-            port:
-              number: 3000
+    - host: "karakeep.example.com"
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: "web"
+                port:
+                  number: 3000

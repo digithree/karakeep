@@ -12,29 +12,24 @@ custom_edit_url: null
 ---
 
 import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
 import ParamsDetails from "@theme/ParamsDetails";
 import RequestSchema from "@theme/RequestSchema";
 import StatusCodes from "@theme/StatusCodes";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
-import Heading from "@theme/Heading";
 
 <Heading
   as={"h1"}
   className={"openapi__heading"}
   children={"Get a single tag"}
->
-</Heading>
+></Heading>
 
 <MethodEndpoint
   method={"get"}
   path={"/tags/{tagId}"}
   context={"endpoint"}
->
-  
-</MethodEndpoint>
-
-
+></MethodEndpoint>
 
 Get tag by its id
 
@@ -43,29 +38,72 @@ Get tag by its id
   as={"h2"}
   className={"openapi-tabs__heading"}
   children={"Request"}
->
-</Heading>
+></Heading>
 
 <ParamsDetails
-  parameters={[{"schema":{"type":"string","example":"ieidlxygmwj87oxz5hxttoc8","title":"TagId"},"required":true,"name":"tagId","in":"path"}]}
->
-  
-</ParamsDetails>
+  parameters={[
+    {
+      schema: {
+        type: "string",
+        example: "ieidlxygmwj87oxz5hxttoc8",
+        title: "TagId",
+      },
+      required: true,
+      name: "tagId",
+      in: "path",
+    },
+  ]}
+></ParamsDetails>
 
-<RequestSchema
-  title={"Body"}
-  body={undefined}
->
-  
-</RequestSchema>
+<RequestSchema title={"Body"} body={undefined}></RequestSchema>
 
 <StatusCodes
   id={undefined}
   label={undefined}
-  responses={{"200":{"description":"Object with list data.","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"numBookmarks":{"type":"number"},"numBookmarksByAttachedType":{"type":"object","properties":{"ai":{"type":"number"},"human":{"type":"number"}}}},"required":["id","name","numBookmarks","numBookmarksByAttachedType"],"title":"Tag"}}}},"404":{"description":"Tag not found","content":{"application/json":{"schema":{"type":"object","properties":{"code":{"type":"string"},"message":{"type":"string"}},"required":["code","message"]}}}}}}
->
-  
-</StatusCodes>
-
-
-      
+  responses={{
+    "200": {
+      description: "Object with list data.",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              id: { type: "string" },
+              name: { type: "string" },
+              numBookmarks: { type: "number" },
+              numBookmarksByAttachedType: {
+                type: "object",
+                properties: {
+                  ai: { type: "number" },
+                  human: { type: "number" },
+                },
+              },
+            },
+            required: [
+              "id",
+              "name",
+              "numBookmarks",
+              "numBookmarksByAttachedType",
+            ],
+            title: "Tag",
+          },
+        },
+      },
+    },
+    "404": {
+      description: "Tag not found",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              code: { type: "string" },
+              message: { type: "string" },
+            },
+            required: ["code", "message"],
+          },
+        },
+      },
+    },
+  }}
+></StatusCodes>

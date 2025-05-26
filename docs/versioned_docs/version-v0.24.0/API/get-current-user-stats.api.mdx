@@ -12,52 +12,60 @@ custom_edit_url: null
 ---
 
 import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
 import ParamsDetails from "@theme/ParamsDetails";
 import RequestSchema from "@theme/RequestSchema";
 import StatusCodes from "@theme/StatusCodes";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
-import Heading from "@theme/Heading";
 
 <Heading
   as={"h1"}
   className={"openapi__heading"}
   children={"Get current user stats"}
->
-</Heading>
+></Heading>
 
 <MethodEndpoint
   method={"get"}
   path={"/users/me/stats"}
   context={"endpoint"}
->
-  
-</MethodEndpoint>
-
-
+></MethodEndpoint>
 
 Returns stats about the current user
 
-<ParamsDetails
-  parameters={undefined}
->
-  
-</ParamsDetails>
+<ParamsDetails parameters={undefined}></ParamsDetails>
 
-<RequestSchema
-  title={"Body"}
-  body={undefined}
->
-  
-</RequestSchema>
+<RequestSchema title={"Body"} body={undefined}></RequestSchema>
 
 <StatusCodes
   id={undefined}
   label={undefined}
-  responses={{"200":{"description":"Object with user stats.","content":{"application/json":{"schema":{"type":"object","properties":{"numBookmarks":{"type":"number"},"numFavorites":{"type":"number"},"numArchived":{"type":"number"},"numTags":{"type":"number"},"numLists":{"type":"number"},"numHighlights":{"type":"number"}},"required":["numBookmarks","numFavorites","numArchived","numTags","numLists","numHighlights"]}}}}}}
->
-  
-</StatusCodes>
-
-
-      
+  responses={{
+    "200": {
+      description: "Object with user stats.",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              numBookmarks: { type: "number" },
+              numFavorites: { type: "number" },
+              numArchived: { type: "number" },
+              numTags: { type: "number" },
+              numLists: { type: "number" },
+              numHighlights: { type: "number" },
+            },
+            required: [
+              "numBookmarks",
+              "numFavorites",
+              "numArchived",
+              "numTags",
+              "numLists",
+              "numHighlights",
+            ],
+          },
+        },
+      },
+    },
+  }}
+></StatusCodes>

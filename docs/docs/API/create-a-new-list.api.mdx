@@ -12,29 +12,24 @@ custom_edit_url: null
 ---
 
 import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
 import ParamsDetails from "@theme/ParamsDetails";
 import RequestSchema from "@theme/RequestSchema";
 import StatusCodes from "@theme/StatusCodes";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
-import Heading from "@theme/Heading";
 
 <Heading
   as={"h1"}
   className={"openapi__heading"}
   children={"Create a new list"}
->
-</Heading>
+></Heading>
 
 <MethodEndpoint
   method={"post"}
   path={"/lists"}
   context={"endpoint"}
->
-  
-</MethodEndpoint>
-
-
+></MethodEndpoint>
 
 Create a new list
 
@@ -43,29 +38,80 @@ Create a new list
   as={"h2"}
   className={"openapi-tabs__heading"}
   children={"Request"}
->
-</Heading>
+></Heading>
 
-<ParamsDetails
-  parameters={undefined}
->
-  
-</ParamsDetails>
+<ParamsDetails parameters={undefined}></ParamsDetails>
 
 <RequestSchema
   title={"Body"}
-  body={{"description":"The list to create","content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string","minLength":1,"maxLength":40},"description":{"type":"string","minLength":0,"maxLength":100},"icon":{"type":"string"},"type":{"type":"string","enum":["manual","smart"],"default":"manual"},"query":{"type":"string","minLength":1},"parentId":{"type":"string","nullable":true}},"required":["name","icon"]}}}}}
->
-  
-</RequestSchema>
+  body={{
+    description: "The list to create",
+    content: {
+      "application/json": {
+        schema: {
+          type: "object",
+          properties: {
+            name: { type: "string", minLength: 1, maxLength: 40 },
+            description: { type: "string", minLength: 0, maxLength: 100 },
+            icon: { type: "string" },
+            type: {
+              type: "string",
+              enum: ["manual", "smart"],
+              default: "manual",
+            },
+            query: { type: "string", minLength: 1 },
+            parentId: { type: "string", nullable: true },
+          },
+          required: ["name", "icon"],
+        },
+      },
+    },
+  }}
+></RequestSchema>
 
 <StatusCodes
   id={undefined}
   label={undefined}
-  responses={{"201":{"description":"The created list","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"description":{"type":"string","nullable":true},"icon":{"type":"string"},"parentId":{"type":"string","nullable":true},"type":{"type":"string","enum":["manual","smart"],"default":"manual"},"query":{"type":"string","nullable":true}},"required":["id","name","icon","parentId"],"title":"List"}}}},"400":{"description":"Bad request","content":{"application/json":{"schema":{"type":"object","properties":{"code":{"type":"string"},"message":{"type":"string"}},"required":["code","message"]}}}}}}
->
-  
-</StatusCodes>
-
-
-      
+  responses={{
+    "201": {
+      description: "The created list",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              id: { type: "string" },
+              name: { type: "string" },
+              description: { type: "string", nullable: true },
+              icon: { type: "string" },
+              parentId: { type: "string", nullable: true },
+              type: {
+                type: "string",
+                enum: ["manual", "smart"],
+                default: "manual",
+              },
+              query: { type: "string", nullable: true },
+            },
+            required: ["id", "name", "icon", "parentId"],
+            title: "List",
+          },
+        },
+      },
+    },
+    "400": {
+      description: "Bad request",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              code: { type: "string" },
+              message: { type: "string" },
+            },
+            required: ["code", "message"],
+          },
+        },
+      },
+    },
+  }}
+></StatusCodes>
