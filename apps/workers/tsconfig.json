@@ -6,6 +6,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "outDir": "dist"
+    "outDir": "dist",
+    "rootDir": "."
   }
 }
