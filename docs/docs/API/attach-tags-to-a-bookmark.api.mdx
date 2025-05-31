@@ -12,29 +12,24 @@ custom_edit_url: null
 ---
 
 import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
 import ParamsDetails from "@theme/ParamsDetails";
 import RequestSchema from "@theme/RequestSchema";
 import StatusCodes from "@theme/StatusCodes";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
-import Heading from "@theme/Heading";
 
 <Heading
   as={"h1"}
   className={"openapi__heading"}
   children={"Attach tags to a bookmark"}
->
-</Heading>
+></Heading>
 
 <MethodEndpoint
   method={"post"}
   path={"/bookmarks/{bookmarkId}/tags"}
   context={"endpoint"}
->
-  
-</MethodEndpoint>
-
-
+></MethodEndpoint>
 
 Attach tags to a bookmark
 
@@ -43,29 +38,89 @@ Attach tags to a bookmark
   as={"h2"}
   className={"openapi-tabs__heading"}
   children={"Request"}
->
-</Heading>
+></Heading>
 
 <ParamsDetails
-  parameters={[{"schema":{"type":"string","example":"ieidlxygmwj87oxz5hxttoc8","title":"BookmarkId"},"required":true,"name":"bookmarkId","in":"path"}]}
->
-  
-</ParamsDetails>
+  parameters={[
+    {
+      schema: {
+        type: "string",
+        example: "ieidlxygmwj87oxz5hxttoc8",
+        title: "BookmarkId",
+      },
+      required: true,
+      name: "bookmarkId",
+      in: "path",
+    },
+  ]}
+></ParamsDetails>
 
 <RequestSchema
   title={"Body"}
-  body={{"description":"The tags to attach.","content":{"application/json":{"schema":{"type":"object","properties":{"tags":{"type":"array","items":{"type":"object","properties":{"tagId":{"type":"string"},"tagName":{"type":"string"}}}}},"required":["tags"]}}}}}
->
-  
-</RequestSchema>
+  body={{
+    description: "The tags to attach.",
+    content: {
+      "application/json": {
+        schema: {
+          type: "object",
+          properties: {
+            tags: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  tagId: { type: "string" },
+                  tagName: { type: "string" },
+                },
+              },
+            },
+          },
+          required: ["tags"],
+        },
+      },
+    },
+  }}
+></RequestSchema>
 
 <StatusCodes
   id={undefined}
   label={undefined}
-  responses={{"200":{"description":"The list of attached tag ids","content":{"application/json":{"schema":{"type":"object","properties":{"attached":{"type":"array","items":{"type":"string","example":"ieidlxygmwj87oxz5hxttoc8","title":"TagId"}}},"required":["attached"]}}}},"404":{"description":"Bookmark not found","content":{"application/json":{"schema":{"type":"object","properties":{"code":{"type":"string"},"message":{"type":"string"}},"required":["code","message"]}}}}}}
->
-  
-</StatusCodes>
-
-
-      
+  responses={{
+    "200": {
+      description: "The list of attached tag ids",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              attached: {
+                type: "array",
+                items: {
+                  type: "string",
+                  example: "ieidlxygmwj87oxz5hxttoc8",
+                  title: "TagId",
+                },
+              },
+            },
+            required: ["attached"],
+          },
+        },
+      },
+    },
+    "404": {
+      description: "Bookmark not found",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              code: { type: "string" },
+              message: { type: "string" },
+            },
+            required: ["code", "message"],
+          },
+        },
+      },
+    },
+  }}
+></StatusCodes>

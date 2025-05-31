@@ -534,7 +534,9 @@ export const userSettings = sqliteTable("userSettings", {
     .references(() => users.id, { onDelete: "cascade" }),
   bookmarkClickAction: text("bookmarkClickAction", {
     enum: ["open_original_link", "expand_bookmark_preview"],
-  }).notNull().default("open_original_link"),
+  })
+    .notNull()
+    .default("open_original_link"),
 });
 
 // Relations

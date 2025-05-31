@@ -13,29 +13,24 @@ hide_send_button: true
 ---
 
 import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
 import ParamsDetails from "@theme/ParamsDetails";
 import RequestSchema from "@theme/RequestSchema";
 import StatusCodes from "@theme/StatusCodes";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
-import Heading from "@theme/Heading";
 
 <Heading
   as={"h1"}
   className={"openapi__heading"}
   children={"Attach asset"}
->
-</Heading>
+></Heading>
 
 <MethodEndpoint
   method={"post"}
   path={"/bookmarks/{bookmarkId}/assets"}
   context={"endpoint"}
->
-  
-</MethodEndpoint>
-
-
+></MethodEndpoint>
 
 Attach a new asset to a bookmark
 
@@ -44,29 +39,99 @@ Attach a new asset to a bookmark
   as={"h2"}
   className={"openapi-tabs__heading"}
   children={"Request"}
->
-</Heading>
+></Heading>
 
 <ParamsDetails
-  parameters={[{"schema":{"type":"string","example":"ieidlxygmwj87oxz5hxttoc8","title":"BookmarkId"},"required":true,"name":"bookmarkId","in":"path"}]}
->
-  
-</ParamsDetails>
+  parameters={[
+    {
+      schema: {
+        type: "string",
+        example: "ieidlxygmwj87oxz5hxttoc8",
+        title: "BookmarkId",
+      },
+      required: true,
+      name: "bookmarkId",
+      in: "path",
+    },
+  ]}
+></ParamsDetails>
 
 <RequestSchema
   title={"Body"}
-  body={{"description":"The asset to attach","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string"},"assetType":{"type":"string","enum":["screenshot","assetScreenshot","bannerImage","fullPageArchive","video","bookmarkAsset","precrawledArchive","unknown"]}},"required":["id","assetType"]}}}}}
->
-  
-</RequestSchema>
+  body={{
+    description: "The asset to attach",
+    content: {
+      "application/json": {
+        schema: {
+          type: "object",
+          properties: {
+            id: { type: "string" },
+            assetType: {
+              type: "string",
+              enum: [
+                "screenshot",
+                "assetScreenshot",
+                "bannerImage",
+                "fullPageArchive",
+                "video",
+                "bookmarkAsset",
+                "precrawledArchive",
+                "unknown",
+              ],
+            },
+          },
+          required: ["id", "assetType"],
+        },
+      },
+    },
+  }}
+></RequestSchema>
 
 <StatusCodes
   id={undefined}
   label={undefined}
-  responses={{"201":{"description":"The attached asset","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string"},"assetType":{"type":"string","enum":["screenshot","assetScreenshot","bannerImage","fullPageArchive","video","bookmarkAsset","precrawledArchive","unknown"]}},"required":["id","assetType"]}}}},"404":{"description":"Bookmark not found","content":{"application/json":{"schema":{"type":"object","properties":{"code":{"type":"string"},"message":{"type":"string"}},"required":["code","message"]}}}}}}
->
-  
-</StatusCodes>
-
-
-      
+  responses={{
+    "201": {
+      description: "The attached asset",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              id: { type: "string" },
+              assetType: {
+                type: "string",
+                enum: [
+                  "screenshot",
+                  "assetScreenshot",
+                  "bannerImage",
+                  "fullPageArchive",
+                  "video",
+                  "bookmarkAsset",
+                  "precrawledArchive",
+                  "unknown",
+                ],
+              },
+            },
+            required: ["id", "assetType"],
+          },
+        },
+      },
+    },
+    "404": {
+      description: "Bookmark not found",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              code: { type: "string" },
+              message: { type: "string" },
+            },
+            required: ["code", "message"],
+          },
+        },
+      },
+    },
+  }}
+></StatusCodes>

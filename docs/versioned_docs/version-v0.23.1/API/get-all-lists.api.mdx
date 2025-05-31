@@ -13,52 +13,68 @@ hide_send_button: true
 ---
 
 import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
 import ParamsDetails from "@theme/ParamsDetails";
 import RequestSchema from "@theme/RequestSchema";
 import StatusCodes from "@theme/StatusCodes";
-import OperationTabs from "@theme/OperationTabs";
 import TabItem from "@theme/TabItem";
-import Heading from "@theme/Heading";
 
 <Heading
   as={"h1"}
   className={"openapi__heading"}
   children={"Get all lists"}
->
-</Heading>
+></Heading>
 
 <MethodEndpoint
   method={"get"}
   path={"/lists"}
   context={"endpoint"}
->
-  
-</MethodEndpoint>
-
-
+></MethodEndpoint>
 
 Get all lists
 
-<ParamsDetails
-  parameters={undefined}
->
-  
-</ParamsDetails>
+<ParamsDetails parameters={undefined}></ParamsDetails>
 
-<RequestSchema
-  title={"Body"}
-  body={undefined}
->
-  
-</RequestSchema>
+<RequestSchema title={"Body"} body={undefined}></RequestSchema>
 
 <StatusCodes
   id={undefined}
   label={undefined}
-  responses={{"200":{"description":"Object with all lists data.","content":{"application/json":{"schema":{"type":"object","properties":{"lists":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"description":{"type":"string","nullable":true},"icon":{"type":"string"},"parentId":{"type":"string","nullable":true},"type":{"type":"string","enum":["manual","smart"],"default":"manual"},"query":{"type":"string","nullable":true}},"required":["id","name","icon","parentId"],"title":"List"}}},"required":["lists"]}}}}}}
->
-  
-</StatusCodes>
-
-
-      
+  responses={{
+    "200": {
+      description: "Object with all lists data.",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              lists: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    id: { type: "string" },
+                    name: { type: "string" },
+                    description: { type: "string", nullable: true },
+                    icon: { type: "string" },
+                    parentId: { type: "string", nullable: true },
+                    type: {
+                      type: "string",
+                      enum: ["manual", "smart"],
+                      default: "manual",
+                    },
+                    query: { type: "string", nullable: true },
+                  },
+                  required: ["id", "name", "icon", "parentId"],
+                  title: "List",
+                },
+              },
+            },
+            required: ["lists"],
+          },
+        },
+      },
+    },
+  }}
+></StatusCodes>
